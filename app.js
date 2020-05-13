@@ -19,8 +19,9 @@ var highestBid = 0;
 $("#submit-bid").on("click", function () {
     bidderName = $("#bidder-name").val().trim();
     bidderPrice = parseInt($("#bidder-price").val().trim());
-
+    
     if (bidderPrice > highestBid) {
+        highestBid = bidderPrice;
 
         firebase.database().ref().set({
             highestBidder: bidderName,
@@ -28,7 +29,7 @@ $("#submit-bid").on("click", function () {
         })
 
     } else {
-        console.log("You have to bid higher!")
+        alert("You have to bid higher!")
 
     }
     return false;
